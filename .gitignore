@@ -1,11 +1,13 @@
 # Backend
 Backend/node_modules/
 Backend/.env
+Backend/NewFolder
 
 # Frontend
 flight-frontend/node_modules/
 flight-frontend/dist/
 flight-frontend/.env
+flight-frontend/public
 
 # Logs
 *.log
