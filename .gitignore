@@ -1,0 +1,15 @@
+# Backend
+Backend/node_modules/
+Backend/.env
+
+# Frontend
+flight-frontend/node_modules/
+flight-frontend/dist/
+flight-frontend/.env
+
+# Logs
+*.log
+
+# OS / Editor
+.vscode/
+.DS_Store

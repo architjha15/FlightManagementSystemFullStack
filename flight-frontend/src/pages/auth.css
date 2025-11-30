@@ -1,0 +1,111 @@
+/* src/pages/Auth.css */
+
+/* This replaces the 'body' selector from your original CSS */
+.auth-wrapper {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.container {
+  width: 350px;
+  background-color: white;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.form-toggle {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.form-toggle button {
+  width: 48%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: #764ba2;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+  opacity: 0.6; /* Default inactive look */
+}
+
+/* Add an active state to make it clear which is selected */
+.form-toggle button.active {
+  opacity: 1;
+  background-color: #5b3c91;
+}
+
+.form-toggle button:hover {
+  background-color: #5b3c91;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  animation: slideIn 0.5s ease forwards;
+}
+
+.form input {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: border 0.3s;
+}
+
+.form input:focus {
+  border-color: #764ba2;
+}
+
+.form button {
+  padding: 10px;
+  border: none;
+  background-color: #764ba2;
+  color: white;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 10px;
+}
+
+.form button:hover {
+  background-color: #5b3c91;
+}
+
+.hidden {
+  display: none;
+}
+
+.message {
+  text-align: center;
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #d4edda;
+  color: #155724;
+  border-radius: 5px;
+  animation: fadeIn 0.5s ease-in;
+  font-size: 0.9rem;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}

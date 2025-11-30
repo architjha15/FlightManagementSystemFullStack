@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme {
+  /* Keep your existing variables */
+  --color-glass: rgba(255, 255, 255, 0.06);
+  --animate-float: float 4s ease-in-out infinite;
+}
+
+@layer utilities {
+  .glass {
+    /* Changed from default to rounded-3xl for very round corners */
+    @apply bg-glass backdrop-blur-xl border border-white/10 shadow-xl rounded-3xl;
+  }
+  
+  .btn-glass {
+    /* Also rounded buttons */
+    @apply hover:bg-white/10 active:scale-95 transition-all cursor-pointer rounded-xl;
+  }
+}
+
+/* THE NEW BACKGROUND CODE */
+.gradient-mesh {
+  /* 1. Base Dark Color */
+  background-color: #0f172a;
+  
+  /* 2. Multiple Color Blobs (Cyan, Purple, Deep Blue) */
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.3) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.3) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(14, 165, 233, 0.3) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(99, 102, 241, 0.3) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(139, 92, 246, 0.15) 0px, transparent 50%);
+    
+  background-attachment: fixed; /* Keeps bg steady while scrolling */
+  background-size: 100% 100%;
+}
+
+/* Optional: Animation Keyframes */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+
+/* ... existing code ... */
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.4s ease-out forwards;
+}
