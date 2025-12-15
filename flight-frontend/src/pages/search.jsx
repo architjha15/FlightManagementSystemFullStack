@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Plane, Calendar, Search as SearchIcon, MapPin } from "lucide-react";
+import SwapButton from "./swapButton";
 
 // --- 1. City Dropdown (Kept mostly the same, ensuring it works seamlessly) ---
 const CityInput = ({
@@ -40,6 +41,7 @@ const CityInput = ({
     onChange(city.cityCode);
     setIsOpen(false);
   };
+
 
   return (
     <div className="relative space-y-2 group" ref={wrapperRef}>
@@ -85,6 +87,7 @@ const CityInput = ({
   );
 };
 
+
 // --- 2. Main Search Component ---
 export default function Search() {
   const [from, setFrom] = useState("DEL"); // Stores "DEL"
@@ -95,6 +98,14 @@ export default function Search() {
   const [loading, setLoading] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
   const navigate = useNavigate();
+
+  const handleSwap = () => {
+    if (!from || !to) return;
+    setFrom(to);
+    setTo(from);
+  };
+
+  const isSwapDisabled = !from || !to;
 
   useEffect(() => {
     const fetchCities = async () => {
@@ -109,7 +120,6 @@ export default function Search() {
     fetchCities();
   }, []);
 
-  // --- 🌟 THE FIX IS HERE 🌟 ---
   // This helper function translates "DEL" -> "New Delhi"
   const getCityName = (inputCodeOrName) => {
     if (!inputCodeOrName) return "";
@@ -122,7 +132,6 @@ export default function Search() {
         c.cityName.toLowerCase() === lowerInput
     );
 
-    // If found, return the full Database Name. If not, fallback to whatever they typed.
     return foundCity ? foundCity.cityName : inputCodeOrName;
   };
 
@@ -167,9 +176,9 @@ export default function Search() {
 
           <form
             onSubmit={submit}
-            className="grid grid-cols-1 md:grid-cols-12 gap-6 items-end"
+            className="grid grid-cols-1 md:grid-cols-12 gap-6 items-end relative z-10"
           >
-            <div className="md:col-span-4">
+            <div className="md:col-span-4 relative">
               <CityInput
                 label="From"
                 value={from}
@@ -178,7 +187,13 @@ export default function Search() {
                 icon={MapPin}
                 placeholder="Origin"
               />
+
+              <SwapButton
+                onSwap={handleSwap}
+                disabled={isSwapDisabled}
+              />
             </div>
+
             <div className="md:col-span-4">
               <CityInput
                 label="To"
@@ -189,6 +204,7 @@ export default function Search() {
                 placeholder="Destination"
               />
             </div>
+
             <div className="md:col-span-2">
               <div className="space-y-2">
                 <label className="text-xs font-bold text-emerald-400 uppercase tracking-wider ml-1 flex items-center gap-2">

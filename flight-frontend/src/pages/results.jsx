@@ -1,7 +1,7 @@
 import React from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { mockFlights } from "../data/mock";
-import { ArrowLeft } from "lucide-react"; // Make sure to install/import this
+import { ArrowLeft } from "lucide-react";
 
 export default function Results() {
   const [q] = useSearchParams();
@@ -9,30 +9,27 @@ export default function Results() {
   const to = q.get("to") || "BOM";
   const navigate = useNavigate();
 
-  // FIX: logic changed to && (AND) and removed "|| true"
-  // Added .toLowerCase() to make it case-insensitive
   const flights = mockFlights.filter(
-    (f) => 
-      f.from.toLowerCase() === from.toLowerCase() && 
+    (f) =>
+      f.from.toLowerCase() === from.toLowerCase() &&
       f.to.toLowerCase() === to.toLowerCase()
   );
 
   return (
-    // Added wrapper to match your theme
     <div className="min-h-screen bg-slate-900 text-white p-6 md:p-12">
       <div className="max-w-4xl mx-auto space-y-6">
-        
+
         {/* Header Section */}
         <div className="flex items-center justify-between">
-           <button 
-             onClick={() => navigate("/search")}
-             className="flex items-center text-slate-400 hover:text-white transition-colors text-sm cursor-pointer"
-           >
-             <ArrowLeft size={18} className="mr-2" /> Back to Search
-           </button>
-           <h3 className="font-semibold text-xl">
+          <button
+            onClick={() => navigate("/search")}
+            className="flex items-center text-slate-400 hover:text-white transition-colors text-sm cursor-pointer"
+          >
+            <ArrowLeft size={18} className="mr-2" /> Back to Search
+          </button>
+          <h3 className="font-semibold text-xl">
             {from} <span className="text-slate-500">→</span> {to}
-           </h3>
+          </h3>
         </div>
 
         {/* Results Grid */}
@@ -51,13 +48,13 @@ export default function Results() {
                     </span>
                     <span className="text-xs text-slate-400">{f.id}</span>
                   </div>
-                  
+
                   <div className="flex items-center gap-6">
                     <div>
                       <div className="font-bold text-xl">{f.depart.split("T")[1]}</div>
                       <div className="text-xs text-slate-400">{f.from}</div>
                     </div>
-                    
+
                     {/* Duration Line */}
                     <div className="flex flex-col items-center px-4">
                       <span className="text-[10px] text-slate-500">{f.duration}</span>
@@ -84,11 +81,11 @@ export default function Results() {
               </div>
             ))
           ) : (
-             // No Results State
-             <div className="glass p-8 rounded-xl text-center">
-               <p className="text-slate-400">No flights found for this route.</p>
-               <button onClick={() => navigate("/search")} className="text-emerald-400 mt-2 hover:underline">Try another search</button>
-             </div>
+            // No Results State
+            <div className="glass p-8 rounded-xl text-center">
+              <p className="text-slate-400">No flights found for this route.</p>
+              <button onClick={() => navigate("/search")} className="text-emerald-400 mt-2 hover:underline">Try another search</button>
+            </div>
           )}
         </div>
       </div>

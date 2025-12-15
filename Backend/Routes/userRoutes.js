@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
-const User = require("../Models/userModel"); // Import the model we just made
+const User = require("../Models/userModel");
 
 // REGISTER
 router.post("/register", async (req, res) => {

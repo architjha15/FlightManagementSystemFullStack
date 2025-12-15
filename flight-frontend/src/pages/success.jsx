@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { CheckCircle, Home, Mail, Loader } from "lucide-react"; // Changed Download to Mail for clarity
+import { CheckCircle, Home, Mail, Loader } from "lucide-react";
 
 export default function Success() {
   const location = useLocation();
   const navigate = useNavigate();
-  
+
   // Get bookingId. Default to null if state is missing.
   const { bookingId } = location.state || {};
-  
+
   const [loading, setLoading] = useState(false);
 
   const handleEmailTicket = async () => {
@@ -41,7 +41,7 @@ export default function Success() {
   return (
     <div className="min-h-screen bg-[#0f172a] flex items-center justify-center px-4">
       <div className="max-w-md w-full bg-[#1e293b]/50 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl text-center">
-        
+
         <div className="w-20 h-20 bg-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-[0_0_30px_#10b981]">
           <CheckCircle size={40} className="text-white" />
         </div>
@@ -56,7 +56,7 @@ export default function Success() {
 
         <div className="space-y-3">
           {/* Email Ticket Button */}
-          <button 
+          <button
             onClick={handleEmailTicket}
             disabled={loading}
             className="w-full py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white font-bold border border-white/10 transition-all flex justify-center items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
@@ -72,9 +72,9 @@ export default function Success() {
               </>
             )}
           </button>
-          
+
           <button onClick={() => navigate("/")} className="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-bold shadow-lg shadow-emerald-500/20 transition-all active:scale-95 flex justify-center items-center gap-2">
-             Go to Home <Home size={18} />
+            Go to Home <Home size={18} />
           </button>
         </div>
 

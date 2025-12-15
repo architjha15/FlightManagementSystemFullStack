@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Auth.css"; 
+import "./Auth.css";
 
 export default function Auth() {
   const [isLoginView, setIsLoginView] = useState(true);
@@ -19,7 +19,7 @@ export default function Auth() {
   // Handle Input Changes
   const handleLoginChange = (e) =>
     setLoginData({ ...loginData, [e.target.id]: e.target.value });
-  
+
   const handleSignupChange = (e) =>
     setSignupData({ ...signupData, [e.target.id]: e.target.value });
 
@@ -59,8 +59,8 @@ export default function Auth() {
       const data = await response.json();
 
       if (response.ok) {
-        localStorage.setItem("fm_user", data.fname); 
-        navigate("/search"); 
+        localStorage.setItem("fm_user", data.fname);
+        navigate("/search");
       } else {
         setMessage(data.msg || "Registration failed");
       }
@@ -73,7 +73,7 @@ export default function Auth() {
     <div className="auth-wrapper">
       <div className="container">
         <div className="form-container">
-          
+
           {/* Toggle Buttons */}
           <div className="form-toggle">
             <button
@@ -161,7 +161,7 @@ export default function Auth() {
           )}
 
           {message && <div className="message">{message}</div>}
-          
+
         </div>
       </div>
     </div>

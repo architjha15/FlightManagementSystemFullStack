@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   Plane,
@@ -13,21 +13,15 @@ export default function Booking() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // 1. Get flight data
   const { flight } = location.state || {};
 
-  // 2. Class Selection State
   const [ticketClass, setTicketClass] = useState("economy");
 
-  // --- DEBUG LOG: Check your Console to see exactly what names are being used ---
   useEffect(() => {
     if (flight) console.log("🔍 FLIGHT DATA:", flight);
   }, [flight]);
 
   if (!flight) return null;
-
-  // --- 🌟 CRITICAL FIX: VARIABLE MAPPING 🌟 ---
-  // We check multiple possible names for the same data to ensure it displays.
 
   // TIME: Check 'departureTime' OR 'depart'
   const departTime = flight.departureTime || flight.depart || "--:--";
@@ -57,8 +51,8 @@ export default function Booking() {
       state: {
         flight: flight,
         ticketClass: ticketClass,
-        totalPrice: finalPrice + tax, // Pass the calculated total
-        travelers: 1, // Default to 1 traveler for now
+        totalPrice: finalPrice + tax,
+        travelers: 1,
       },
     });
   };
@@ -88,11 +82,10 @@ export default function Booking() {
 
                 {/* STOPS BADGE (Now using 'stopCount' variable) */}
                 <span
-                  className={`text-sm font-bold px-3 py-1 rounded-full border ${
-                    stopCount > 0
+                  className={`text-sm font-bold px-3 py-1 rounded-full border ${stopCount > 0
                       ? "text-amber-400 border-amber-500/30 bg-amber-500/10"
                       : "text-emerald-400 border-emerald-500/30 bg-emerald-500/10"
-                  }`}
+                    }`}
                 >
                   {stopCount > 0 ? `${stopCount} Stop` : "Non-stop"}
                 </span>
@@ -161,11 +154,10 @@ export default function Booking() {
                 {/* Economy Card */}
                 <div
                   onClick={() => setTicketClass("economy")}
-                  className={`cursor-pointer relative p-6 rounded-2xl border-2 transition-all duration-300 group ${
-                    ticketClass === "economy"
+                  className={`cursor-pointer relative p-6 rounded-2xl border-2 transition-all duration-300 group ${ticketClass === "economy"
                       ? "bg-emerald-500/10 border-emerald-500"
                       : "bg-[#0f172a]/50 border-transparent hover:border-slate-600"
-                  }`}
+                    }`}
                 >
                   <div className="flex justify-between items-start mb-4">
                     <div
@@ -189,11 +181,10 @@ export default function Booking() {
                 {/* Business Card */}
                 <div
                   onClick={() => setTicketClass("business")}
-                  className={`cursor-pointer relative p-6 rounded-2xl border-2 transition-all duration-300 group ${
-                    ticketClass === "business"
+                  className={`cursor-pointer relative p-6 rounded-2xl border-2 transition-all duration-300 group ${ticketClass === "business"
                       ? "bg-amber-500/10 border-amber-500"
                       : "bg-[#0f172a]/50 border-transparent hover:border-slate-600"
-                  }`}
+                    }`}
                 >
                   <div className="flex justify-between items-start mb-4">
                     <div
